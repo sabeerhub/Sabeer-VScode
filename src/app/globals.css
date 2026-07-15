@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #1E1E1E;
+  --foreground: #CCCCCC;
+  --sidebar-bg: #252526;
+  --explorer-bg: #2D2D30;
+  --editor-bg: #1E1E1E;
+  --status-bg: #007ACC;
+  --accent-blue: #3794FF;
+  --border-color: #3C3C3C;
+  --selection-bg: #264F78;
+  --text-primary: #CCCCCC;
+  --text-secondary: #858585;
+}
+
+/* Custom Scrollbars to look exactly like VS Code scrollbars */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1E1E1E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4F4F4F;
+  border: 3px solid #1E1E1E;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #646464;
+}
+
+::-webkit-scrollbar-corner {
+  background: #1E1E1E;
+}
+
+/* Global resets and styling */
+html, body {
+  background-color: #1E1E1E;
+  color: #CCCCCC;
+  font-family: var(--font-jetbrains-mono), Consolas, Menlo, Monaco, monospace;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Accent Selection Color */
+::selection {
+  background-color: #264F78;
+  color: #FFFFFF;
+}
+
+/* Typing animation cursor styling */
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { border-color: transparent }
+  50% { border-color: #3794FF }
+}
+
+/* Pulse animation for CTA & Activity Bar items */
+@keyframes activity-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.activity-glow {
+  animation: activity-glow 2s infinite ease-in-out;
+}
