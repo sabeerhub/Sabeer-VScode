@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import WorkspaceProvider, { useWorkspace } from "@/components/WorkspaceContext";
 import TitleBar from "@/components/TitleBar";
 import ActivityBar from "@/components/ActivityBar";
@@ -8,7 +9,6 @@ import Explorer from "@/components/Explorer";
 import SearchPanel from "@/components/SearchPanel";
 import GitPanel from "@/components/GitPanel";
 import TabsArea, { findFileByPath } from "@/components/TabsArea";
-import EditorArea from "@/components/EditorArea";
 import ReadmeView from "@/components/ReadmeView";
 import ProjectView from "@/components/ProjectView";
 import GalleryView from "@/components/GalleryView";
@@ -19,6 +19,9 @@ import { WORKSPACE_FILES, Project } from "@/data/workspace";
 import { motion, AnimatePresence } from "framer-motion";
 import { VscCode, VscSettings, VscVscode } from "react-icons/vsc";
 import confetti from "canvas-confetti";
+
+// Load EditorArea dynamically with SSR disabled to prevent server-side Monaco crashes
+const EditorArea = dynamic(() => import("@/components/EditorArea"), { ssr: false });
 
 function VSCodeWorkspace() {
   const { state, openFile, closeFile, setActiveTabPath, setActiveSidebar, setTerminalOpen, setCommandPaletteOpen, setQuickOpenOpen, toggleFolder } = useWorkspace();
